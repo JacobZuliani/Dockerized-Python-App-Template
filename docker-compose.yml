@@ -1,0 +1,13 @@
+version: '3.4'
+
+services:
+  pim:
+    image: app_name
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: app_name
+
+    # uncomment this to test the prod build without the ec2-metadata service
+    volumes:
+      - /home/jake/.aws:/home/appuser/.aws
