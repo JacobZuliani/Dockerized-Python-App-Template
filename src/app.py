@@ -4,7 +4,7 @@ from logger import get_logger
 
 def app():
 
-    logger.debug("printing hello world")
+    logger.info("printing hello world")
     print("hello world")
 
 

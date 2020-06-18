@@ -10,23 +10,33 @@
 				"dockerfile": "${workspaceFolder}/Dockerfile",
 				"context": "${workspaceFolder}",
 				"pull": true
-			}
+			},
+		},
+		{
+			"label": "run type checker",
+			"type": "shell",
+			"dependsOn": [
+				"docker-build"
+			],
+			"command": "docker run -t -P 'app_name:latest' pytype src",
 		},
 		{
 			"type": "docker-run",
 			"label": "docker-run: debug",
 			"dependsOn": [
-				"docker-build"
+				"run type checker"
 			],
 			"dockerRun": {
 				"volumes": [
-					{"localPath": "/home/jake/.aws",
-					 "containerPath": "/home/appuser/.aws"},
+					{
+						"localPath": "/home/jake/.aws",
+						"containerPath": "/home/appuser/.aws"
+					}
 				],
 				"env": {
 					"RUNTIME_ENV": "DEV"
 				}
-			},	
+			},
 			"python": {
 				"file": "src/app.py"
 			}

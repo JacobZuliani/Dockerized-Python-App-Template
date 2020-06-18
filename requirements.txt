@@ -1,1 +1,2 @@
+pytype == 2020.06.01
 watchtower == 0.7.3

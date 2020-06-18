@@ -11,7 +11,7 @@ LOG_FORMAT = (
 DATE_FORMAT = "%d/%b/%Y %I:%M %p"
 
 
-def get_logger():
+def get_logger() -> logging.Logger:
     """
     Initializes the approiate logger using the environment variable "RUNTIME_ENV".
     This environment variable is set to PROD by default and is overwritten to be "DEV" by the
@@ -22,11 +22,8 @@ def get_logger():
     If it is RUNTIME_ENV != PROD:
         I assume the program is being run in development or testing where I do not want logs to be
         sent to CloudWatch.
-
-    Returns:
-        logging.logger
     """
-    logging.basicConfig(format=LOG_FORMAT, datefmt=DATE_FORMAT, level=logging.DEBUG)
+    logging.basicConfig(format=LOG_FORMAT, datefmt=DATE_FORMAT, level=logging.INFO)
     logger = logging.getLogger("app_name")
 
     if os.environ["RUNTIME_ENV"] == "PROD":
